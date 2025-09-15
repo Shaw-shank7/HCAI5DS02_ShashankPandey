@@ -1,0 +1,127 @@
+:root { --bg:#0b1220; --card:#0f172a; --ink:#e5e7eb; --muted:#94a3b8; --accent:#60a5fa; --border:#1f2a44; --ink-dark:#0b1220; }
+
+body { background: var(--bg); color: var(--ink); font-family: Inter, system-ui; }
+h1 { font-weight: 800; letter-spacing: .2px; margin: 18px 0 12px; }
+
+/* KPI + container cards */
+.kpi-row { display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-bottom: 12px; }
+.kpi { background: linear-gradient(180deg, #111827, #0f172a); border-radius:16px; box-shadow: 0 8px 24px rgba(0,0,0,.25); padding:14px 16px; }
+.kpi .kpi-title { color: var(--muted); margin:0 0 4px; text-transform: uppercase; font-size: .8rem; letter-spacing:.08em; }
+.kpi .kpi-value { margin:0; font-weight:700; }
+
+.controls, .stat-box, .metrics, .card, .panel {
+  background: var(--card); border-radius:16px; border:1px solid var(--border);
+  padding:14px; color: var(--ink);
+}
+
+/* ====== LAYOUT: sidebar (left) + main (right) ====== */
+.grid-2 {
+  display:grid; grid-template-columns: 320px 1fr; gap:16px; align-items:start;
+}
+.sidebar { position: sticky; top: 12px; display: grid; gap: 12px; }
+@media (max-width: 1100px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+}
+
+/* ====== Dash core components — Dropdown (react-select v1/v2 safety) ====== */
+/* Control */
+.Select, .Select-control, .Select__control {
+  background: #ffffff !important; color: #111827 !important; border: 1px solid #d1d5db !important; border-radius: 10px !important;
+  min-height: 40px; box-shadow: none !important;
+}
+.Select.is-focused > .Select-control,
+.Select__control--is-focused {
+  border-color: var(--accent) !important; box-shadow: 0 0 0 3px rgba(96,165,250,.25) !important;
+}
+
+/* Placeholder & single value */
+.Select-placeholder, .Select--single > .Select-control .Select-value,
+.Select__single-value, .Select__placeholder {
+  color: #111827 !important;
+}
+
+/* Multi-value chips */
+.Select .Select-value { background:#e5e7eb !important; color:#111827 !important; border:0 !important; }
+.Select .Select-value-icon, .Select .Select-value-label { color:#111827 !important; }
+
+/* Menu panel white; options black text; hover inverted */
+.Select-menu-outer, .Select-menu, .Select__menu {
+  background:#ffffff !important; color:#111827 !important; border:1px solid #d1d5db !important; border-radius:12px !important;
+  overflow:hidden;
+}
+.Select-option, .Select__option { color:#111827 !important; background:#ffffff !important; padding:8px 12px !important; }
+.Select-option.is-focused, .Select__option--is-focused,
+.Select-option:hover, .Select__option:hover {
+  background:#0b1220 !important; color:#ffffff !important; cursor:pointer;
+}
+.Select-option.is-selected, .Select__option--is-selected {
+  background:#111827 !important; color:#ffffff !important;
+}
+
+/* Clear/arrow icons */
+.Select-arrow, .Select-clear-zone, .Select__dropdown-indicator, .Select__clear-indicator { color:#111827 !important; fill:#111827 !important; }
+
+/* ====== Slider (rc-slider) ====== */
+.rc-slider { margin: 10px 8px 18px; }
+.rc-slider-rail { background:#1e293b !important; height:6px; }
+.rc-slider-track { background: var(--accent) !important; height:6px; }
+.rc-slider-dot { border-color:#334155 !important; background:#0f172a !important; width:10px; height:10px; margin-top:-2px; }
+.rc-slider-dot-active { border-color: var(--accent) !important; }
+.rc-slider-handle { border: 2px solid var(--accent) !important; background:#ffffff !important; width:16px; height:16px; margin-top:-5px; }
+.rc-slider-handle:hover { box-shadow: 0 0 0 6px rgba(96,165,250,.25) !important; }
+
+/* Slider marks */
+.rc-slider-mark-text { color:#cbd5e1 !important; }
+.rc-slider-mark-text-active { color:#ffffff !important; }
+
+/* ====== Tabs (dcc.Tabs) ====== */
+.tab { background: var(--card) !important; color: var(--muted) !important; border:1px solid var(--border) !important; padding:10px 12px !important; }
+.tab--selected { background:#111827 !important; color:#ffffff !important; border-color: var(--accent) !important; }
+
+/* (If using dbc Tabs) */
+.nav-tabs .nav-link { color: var(--muted); background: var(--card); border-color: var(--border); }
+.nav-tabs .nav-link.active { color:#fff; background:#111827; border-color: var(--accent) var(--accent) #111827; }
+
+/* ====== Form labels ====== */
+label { font-size:.9rem; color: var(--muted); }
+
+/* ====== Toast-like error ====== */
+#error, #data-error { background:#1f2937; border:1px solid #ef4444; color:#fecaca; padding:10px 12px; border-radius:10px; }
+
+/* ====== Plotly container frame ====== */
+.plot-card { background: var(--card); border:1px solid var(--border); border-radius:16px; padding:8px; }
+
+/* Vertical nav pills for sidebar RadioItems */
+.nav-pills-vertical {
+  display: grid;
+  gap: 8px;
+}
+
+.nav-pill-input {
+  display: none;  /* hide the default radio circle */
+}
+
+.nav-pill-label {
+  display: block;
+  padding: 10px 12px;
+  background: var(--card);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.nav-pill-label:hover {
+  background: #111827;
+  color: #fff;
+}
+
+/* Active (checked) state */
+.nav-pill-input:checked + .nav-pill-label {
+  background: #111827 !important;
+  color: #fff !important;
+  border-color: var(--accent) !important;
+}
